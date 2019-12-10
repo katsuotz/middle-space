@@ -17,7 +17,7 @@ class Bullet {
                 this.height = 16;
                 this.img = imageAssets['bullet.png'];
 
-                audioType = 'shoot.mp3';
+                audioType = 'fireball.mp3';
 
                 switch (bullet_level) {
                     case 2:
@@ -54,6 +54,22 @@ class Bullet {
                     rangeScale: .04,
                     image: imageAssets['rocket-exhaust.png']
                 };
+                break;
+            case 3:
+                this.width = 40;
+                this.height = 5;
+                this.img = imageAssets['laser.png'];
+
+                audioType = 'laser.mp3';
+
+                switch (bullet_level) {
+                    case 2:
+                        this.power = 50;
+                        break;
+                    default:
+                        this.power = 20;
+                        break;
+                }
                 break;
         }
 
@@ -114,10 +130,12 @@ class Bullet {
             ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
         }
 
-        if (this.IS_LEFT) {
-            this.x -= this.speed;
-        } else {
-            this.x += this.speed;
+        if (game.shopShip.mode !== 'shopping') {
+            if (this.IS_LEFT) {
+                this.x -= this.speed;
+            } else {
+                this.x += this.speed;
+            }
         }
 
     }

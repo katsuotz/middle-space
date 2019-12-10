@@ -63,3 +63,27 @@ function resetHeight() {
 window.addEventListener("resize", resetHeight);
 // called to initially set the height.
 resetHeight();
+
+$('.instruction-btn').on('click, touchend', function () {
+    $('.instructions-overlay').removeClass('hide');
+    $('.main-menu').addClass('hide');
+});
+
+$('.instruction-nav').on('click', function () {
+    let currentNav = parseInt($('.instruction-slide.active').data('slide'));
+
+    let to = parseInt($(this).data('to'));
+
+    currentNav += to;
+
+    $('.instruction-slide.active').removeClass('active');
+
+    if (currentNav < 1) {
+        $($('.instruction-slide')[$('.instruction-slide').length - 1]).addClass('active')
+        return 0;
+    }
+
+    let nextInstruction = $($(`.instruction-slide[data-slide="${currentNav}"]`)).length ? $($(`.instruction-slide[data-slide="${currentNav}"]`)) : $($(`.instruction-slide[data-slide="1"]`));
+
+    nextInstruction.addClass('active');
+});
