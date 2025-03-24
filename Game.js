@@ -6,6 +6,7 @@ class Game {
     //  Starting Game
 
     start(GOD_MODE = false) {
+        this.lastRenderTime = 0;
         this.GOD_MODE = GOD_MODE;
 
         this.sound = new Audio();
@@ -123,6 +124,17 @@ class Game {
     // Rendering Game
 
     render() {
+        const now = performance.now();
+        const delta = now - (this.lastRenderTime || 0);
+
+        if (delta < 1000 / 60) {
+            // Skip this frame to limit to 60fps
+            this.rendering = requestAnimationFrame(this.render);
+            return;
+        }
+
+        this.lastRenderTime = now;
+
         if (this.pause === -1) {
             this.sound.volume = this.volume;
             this.sound.play();
