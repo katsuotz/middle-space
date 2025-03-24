@@ -93,7 +93,7 @@ canvas {
 /* Logo */
 
 .logo {
-    height: 60px;
+    height: 108px;
 }
 
 /* Input */
@@ -177,7 +177,7 @@ canvas {
 }
 
 #instructions .logo {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 #instructions, #ranking, #scoreForm {
